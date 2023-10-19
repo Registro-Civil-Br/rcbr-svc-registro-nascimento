@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: SVC-NASCIMENTO
   datasource:
     driverClassName: org.h2.Driver
     initialization-mode: always
