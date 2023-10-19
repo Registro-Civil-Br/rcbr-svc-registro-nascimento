@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: SVC-NASCIMENTO
@@ -6,19 +9,19 @@ spring:
   cloud:
     config:
       profile: ${ACTIVE_PROFILE:default}
-#  datasource:
-#    driverClassName: org.h2.Driver
-#    initialization-mode: always
-#    username: sa
-#    password: ''
-#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
-#  h2:
-#    console:
-#      enabled: true
-#      path: /h2
-#  jpa:
-#    defer-datasource-initialization: true
-#    show-sql: true
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    hibernate:
-#      ddl-auto: create
+  datasource:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    username: sa
+    password: ''
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
