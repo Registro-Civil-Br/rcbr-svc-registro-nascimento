@@ -4,6 +4,7 @@ import br.com.rcbr.svc.nascimento.models.dto.request.PessoaRequest;
 import br.com.rcbr.svc.nascimento.models.dto.response.PessoaResponse;
 import br.com.rcbr.svc.nascimento.models.entity.PessoaEntity;
 import br.com.rcbr.svc.nascimento.proxy.impl.GeradorCpfProxyImpl;
+import br.com.rcbr.svc.nascimento.proxy.responses.CpfResponse;
 import br.com.rcbr.svc.nascimento.repositories.PessoaRepository;
 import br.com.rcbr.svc.nascimento.services.CertidaoNascimentoService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +27,13 @@ public class CertidaoNascimentoServiceImpl implements CertidaoNascimentoService 
 
         log.info("Iniciando acesso ao método de acionamento de comunicação com o serviço de criação de " +
                 "novo cpf através dos dados recebidos pela requisição...");
-        // TODO String cpfGerado = geradorCpfProxyImpl.acionaComunicacaoComServicoDeCriacaoDeCpf(pessoaRequest);
-        String cpfGerado = "471.534.278-21";
+        CpfResponse cpfGerado = geradorCpfProxyImpl
+                .acionaComunicacaoComServicoDeCriacaoDeCpf(pessoaRequest.getEstadoNascimento());
         log.info("Acionamento do serviço gerador de Cpf finalizado com sucesso");
 
         log.info("Iniciando acesso ao método responsável por realizar a conversão do objeto Request " +
                 "recebido pelos parâmetros do método para um objeto do tipo Entity...");
-        PessoaEntity pessoaEntity = new PessoaEntity().buildEntityFromRequest(pessoaRequest, cpfGerado);
+        PessoaEntity pessoaEntity = new PessoaEntity().buildEntityFromRequest(pessoaRequest, cpfGerado.getCpf());
         log.info("Conversão finalizada com sucesso");
 
         log.info("Iniciando persistência da pessoa no banco de dados...");
