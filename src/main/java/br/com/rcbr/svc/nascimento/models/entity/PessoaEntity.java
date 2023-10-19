@@ -4,6 +4,9 @@ import br.com.rcbr.svc.nascimento.models.dto.request.PessoaRequest;
 import br.com.rcbr.svc.nascimento.models.enums.EstadoEnum;
 import br.com.rcbr.svc.nascimento.models.enums.GeneroEnum;
 import lombok.*;
+import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -19,8 +22,11 @@ import java.util.UUID;
 public class PessoaEntity {
 
     @Id
-    @Column(name = "UUID_ID_PES")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Type(type = "uuid-char")
+    @Column(name = "UUID_ID_PES", nullable = false, updatable = false)
+    @GeneratedValue(generator = "UUID")
+    @Comment("Chave primária do pagamento - UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
     @Column(name = "STR_NOME_PES", nullable = false)
@@ -45,6 +51,7 @@ public class PessoaEntity {
 
     public PessoaEntity buildEntityFromRequest(PessoaRequest pessoaRequest, String cpfGerado) {
         return PessoaEntity.builder()
+                .nomeCompleto(pessoaRequest.getNomeCompleto())
                 .dataNascimento(pessoaRequest.getDataNascimento())
                 .horaNascimento(pessoaRequest.getHoraNascimento())
                 .cpf(cpfGerado)

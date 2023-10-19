@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: SVC-NASCIMENTO
   datasource:
     driverClassName: org.h2.Driver
     initialization-mode: always
@@ -15,3 +17,20 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create
+
+# Configurações Actuator
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+  health:
+    binders:
+      enabled:
+        false
+
+# Configurações Eureka
+eureka:
+  client:
+    fetch-register: true
+    register-with-eureka: true
+    defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}

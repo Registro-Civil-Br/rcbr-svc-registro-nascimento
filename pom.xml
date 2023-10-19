@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.rcbr</groupId>
-	<artifactId>svc.nascimento</artifactId>
+	<artifactId>svc-nascimento</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>svc.nascimento</name>
+	<name>svc-nascimento</name>
 	<description>Serviço de registro de nascimento de pessoa física</description>
 	<properties>
 		<java.version>11</java.version>
@@ -63,6 +63,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 			<version>1.4.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 	</dependencies>
