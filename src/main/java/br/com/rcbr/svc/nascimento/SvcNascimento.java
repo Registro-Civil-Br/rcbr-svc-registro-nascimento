@@ -2,14 +2,18 @@ package br.com.rcbr.svc.nascimento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
+@EnableDiscoveryClient
 @SpringBootApplication
-public class Application {
+@EntityScan({"br.com.rcbr.svc.nascimento.models.entity"})
+public class SvcNascimento {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(SvcNascimento.class, args);
 	}
 
 }
